@@ -3,12 +3,13 @@ from pywebio import STATIC_PATH
 from flask import Flask, send_from_directory
 from pywebio.input import *
 from pywebio.output import *
+from sklearn.linear_model import LogisticRegression
 from pywebio import start_server
 import pickle
 import argparse
 import numpy as np
 
-classifier = pickle.load(open('finalmodel.pkl', 'rb'))
+model = pickle.load(open('finalmodel.pkl', 'rb'))
 app = Flask(__name__)
 
 def predict():
@@ -33,7 +34,7 @@ def predict():
     age = data['age']
 
     fetch_data = np.array([[preg, glucose, bp, st, insulin, bmi, dpf, age]])
-    my_prediction = classifier.predict(fetch_data)
+    my_prediction = model.predict(fetch_data)
     if my_prediction == 1:
         result = "Great! You DON'T have diabetes."
         put_success(result)
