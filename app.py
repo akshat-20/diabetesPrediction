@@ -43,7 +43,7 @@ def predict():
         put_html('<img src="https://media4.giphy.com/media/1k1ytTA4AHJnp7OvUJ/giphy.gif">')
 
 
-app.add_url_rule('/pred','webio_view',webio_view(predict), methods=['GET','POST','OPTIONS'])
+#app.add_url_rule('/pred','webio_view',webio_view(predict), methods=['GET','POST','OPTIONS'])
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
