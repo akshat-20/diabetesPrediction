@@ -4,9 +4,9 @@ from flask import Flask, send_from_directory
 from pywebio.input import *
 from pywebio.output import *
 import pickle
+import argparse
 import numpy as np
 
-# Load the Logistic Regression model
 classifier = pickle.load(open('finalmodel.pkl', 'rb'))
 app = Flask(__name__)
 
@@ -46,4 +46,12 @@ def predict():
 app.add_url_rule('/pred','webio_view',webio_view(predict),
                 methods=['GET','POST','OPTIONS'])
 
-app.run(host='localhost',port=80)
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-p", "--port", type=int, default=8080)
+    args = parser.parse_args()
+
+    start_server(predict, port=args.port)
+
+# app.run(host='localhost',port=80)
+
