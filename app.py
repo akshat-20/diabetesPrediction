@@ -5,12 +5,15 @@ from pywebio.input import *
 from pywebio.output import *
 from sklearn.linear_model import LogisticRegression
 from pywebio import start_server
-import pickle
 import argparse
 import numpy as np
+import pickle
 
-model = pickle.load(open('finalmodel.pkl', 'rb'))
-app = Flask(__name__)
+
+#model = joblib.load('finalmodel.pkl') 
+
+model = pickle.load(open('final.pkl','rb'))
+#app = Flask(__name__)
 
 def predict():
     data = input_group("Diabetes Prediction",[
@@ -45,14 +48,15 @@ def predict():
         put_html('<img src="https://media4.giphy.com/media/1k1ytTA4AHJnp7OvUJ/giphy.gif">')
 
 
-app.add_url_rule('/pred','webio_view',webio_view(predict), methods=['GET','POST','OPTIONS'])
+#app.add_url_rule('/pred','webio_view',webio_view(predict), methods=['GET','POST','OPTIONS'])
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-p", "--port", type=int, default=8080)
-    args = parser.parse_args()
+# if __name__ == '__main__':
+#     parser = argparse.ArgumentParser()
+#     parser.add_argument("-p", "--port", type=int, default=8080)
+#     args = parser.parse_args()
 
-    start_server(predict, port=args.port)
+#     start_server(predict, port=args.port)
 
-# app.run(host='localhost',port=80)
+#app.run(host='localhost',port=80)
+predict()
 
