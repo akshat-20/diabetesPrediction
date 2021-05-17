@@ -35,11 +35,11 @@ def predict():
 
     fetch_data = np.array([[preg, glucose, bp, st, insulin, bmi, dpf, age]])
     my_prediction = model.predict(fetch_data)
-    if my_prediction == 1:
+    if my_prediction == 0:
         result = "Great! You DON'T have diabetes."
         put_success(result)
         put_html('<img src="https://media0.giphy.com/media/TGQyLdzYv90FjplXkr/giphy.gif">')
-    if my_prediction == 0:
+    if my_prediction == 1:
         result = "Oops! You Have Diabetes"
         put_warning(result)
         put_html('<img src="https://media4.giphy.com/media/1k1ytTA4AHJnp7OvUJ/giphy.gif">')
